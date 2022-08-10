@@ -18,14 +18,16 @@
 
                 var desktopFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
                 mobileFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
-                app = "vnd.youtube://user/channel/UCLYHEdHsDofgWpCUI-Gpy2g';
+                app = "vnd.youtube://"+urlParams.get("v");
 			console.log(desktopFallback);			    
 			console.log(mobileFallback);			    
 			console.log(app);			    
 
                 if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     window.location = app;
-                    
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
                 } else {
                     window.location = desktopFallback;
                 }
