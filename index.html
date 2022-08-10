@@ -15,9 +15,38 @@
 			console.log(urlParams.get("v"));
 						console.log(urlParams.get("user"));
 
+			if(urlParams.get("v")==null){
+	
+                var desktopFallback = "https://www.youtube.com/channel/"+urlParams.get("user"),
+                mobileFallback = "https://www.youtube.com/channel/"+urlParams.get("user"),
+                app = "vnd.youtube://user/channel/"+urlParams.get("user");
+			}else {
+			
+                var desktopFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
+                mobileFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
+                app = "vnd.youtube://"+urlParams.get("v");
+			}
 
+				
 
+			console.log(desktopFallback);			    
+			console.log(mobileFallback);			    
+			console.log(app);			    
 
+                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+                    window.location = app;
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
+                } else {
+                    window.location = desktopFallback;
+                }
+
+                function killPopup() {
+                    window.removeEventListener('pagehide', killPopup);
+                }
+
+                window.addEventListener('pagehide', killPopup);
 
             };
         </script>
