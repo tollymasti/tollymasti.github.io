@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+	<P> HELLO WORLD </p>
+        <script type="text/javascript">
+            window.onload = function() {
+			
+			const queryString = window.location.search;
+			console.log(queryString);			    
+			const urlParams = new URLSearchParams(queryString);			
+			console.log(urlParams.get("v"));			    
+
+				
+
+                var desktopFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
+                mobileFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
+                app = "vnd.youtube://"+urlParams.get("v");
+			console.log(desktopFallback);			    
+			console.log(mobileFallback);			    
+			console.log(app);			    
+
+                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+                    window.location = app;
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
+                } else {
+                    window.location = desktopFallback;
+                }
+
+                function killPopup() {
+                    window.removeEventListener('pagehide', killPopup);
+                }
+
+                window.addEventListener('pagehide', killPopup);
+
+            };
+        </script>
+    </body>
+</html>
