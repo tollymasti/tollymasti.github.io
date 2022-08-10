@@ -34,7 +34,8 @@
 			console.log(app);			    
 
                 if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-                    window.setTimeout(function() {
+                                     window.location = app;
+					window.setTimeout(function() {
                         window.location = mobileFallback;
                     }, 25);
                 } else {
