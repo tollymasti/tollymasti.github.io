@@ -26,13 +26,23 @@
 		 mobileFallback = "https://www.youtube.com/@tollymastiOfficial",
 
           //      app = "intent://www.youtube.com/channel/"+urlParams.get("user")+"#Intent;package=com.google.android.youtube;scheme=https;end";
-	app = "intent://www.youtube.com/@tollymastiOfficial#Intent;package=com.google.android.youtube;scheme=https;end";
+			if( /Android.test(navigator.userAgent) {
+			    	app = "intent://www.youtube.com/@tollymastiOfficial#Intent;package=com.google.android.youtube;scheme=https;end";
 
+			}else(/iPhone|iPad|iPod/i.test(navigator.userAgent){
+		                app = "vnd.youtube://"+urlParams.get("v");
+			}
 			}else {
 			
                 var desktopFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
                 mobileFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
-                app = "vnd.youtube://"+urlParams.get("v");
+			 if( /Android.test(navigator.userAgent) {
+			    	app = "intent://www.youtube.com/@tollymastiOfficial#Intent;package=com.google.android.youtube;scheme=https;end";
+
+			}else(/iPhone|iPad|iPod/i.test(navigator.userAgent){
+		                app = "vnd.youtube://"+urlParams.get("v");
+			}
+			
 			}
 
 				
