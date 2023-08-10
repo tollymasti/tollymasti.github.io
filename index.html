@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-	<P id="textp"> TOLLYMASTI OFFICIAL REDIRECTION TO YOUTUBE APP </p>
-        <script type="text/javascript">
-            window.onload = function() {
-			
-			const queryString = window.location.search;
-			console.log(queryString);			    
-			const urlParams = new URLSearchParams(queryString);			
-			console.log(urlParams.get("v"));
-						console.log(urlParams.get("user"));
+<head>
+    <meta charset="utf-8">
+    <title>Redirect to YouTube</title>
+</head>
+<body>
+    <p id="textp">TOLLYMASTI OFFICIAL REDIRECTION TO YOUTUBE APP</p>
+    <script type="text/javascript">
+        window.onload = function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
 
-			if(urlParams.get("v")==null){
-                var desktopFallback = "https://www.youtube.com/"+urlParams.get("user"),
-                mobileFallback = "https://www.youtube.com/"+urlParams.get("user"),
-                app = "intent://www.youtube.com/"+urlParams.get("user")+"#Intent;package=com.google.android.youtube;scheme=https;end";
-			}else {
-                var desktopFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
-                mobileFallback = "https://youtube.com/watch?v="+urlParams.get("v"),
-                app = "vnd.youtube://"+urlParams.get("v");
-		var androidApp = "intent://www.youtube.com/watch?v="+urlParams.get("v")+"#Intent;package=com.google.android.youtube;scheme=https;end"		
-			}
+            // Get the "v" parameter for video ID
+            const videoId = urlParams.get("v");
 
-				
-			
-			console.log(desktopFallback);			    
-			console.log(mobileFallback);			    
-			console.log(app);			    
-                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-                   window.close();
-				   window.location = app;
-					window.setTimeout(function() {
-                        window.location = mobileFallback;
-                    }, 25);
-                } else if(/Android/i.test(navigator.userAgent)){
-				  window.close();
-				   window.location = androidApp;
-					window.setTimeout(function() {
-                        window.location = mobileFallback;
-                    }, 25);
-		}
-		else {
-                    window.location = desktopFallback;
-                }
+            // Get the "user" parameter for username
+            const username = urlParams.get("user");
 
-             
-            };
-        </script>
-    </body>
+            // Check if videoId or username is present
+            if (videoId !== null) {
+                redirectToVideo(videoId);
+            } else if (username !== null) {
+                redirectToUser(username);
+            } else {
+                // No valid parameters, handle as needed
+                console.log("No valid parameters found.");
+            }
+        };
+
+        function redirectToVideo(videoId) {
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const appUrl = `vnd.youtube://${videoId}`;
+            const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+            if (isMobile) {
+                redirectToApp(appUrl, webUrl);
+            } else {
+                redirectToWeb(webUrl);
+            }
+        }
+
+        function redirectToUser(username) {
+            const webUrl = `https://www.youtube.com/${username}`;
+            redirectToWeb(webUrl);
+        }
+
+        function redirectToApp(appUrl, webUrl) {
+            // Attempt to open the YouTube app
+            window.location = appUrl;
+
+            // If the app doesn't open, redirect to the web URL
+            setTimeout(function() {
+                window.location = webUrl;
+            }, 1000); // Wait for 1 second before fallback
+        }
+
+        function redirectToWeb(webUrl) {
+            // Redirect to the web URL
+            window.location = webUrl;
+        }
+    </script>
+</body>
 </html>
