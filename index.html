@@ -41,14 +41,14 @@
 				   window.location = app;
 					window.setTimeout(function() {
                         window.location = mobileFallback;
-                    }, 150);
+                    }, 25);
                 } else if(/Android/i.test(navigator.userAgent)){
 			  	document.getElementById('textp').innerText("inside " +androidApp)
 				  window.close();
 				   window.location = androidApp;
 					window.setTimeout(function() {
                         window.location = mobileFallback;
-                    }, 150);
+                    }, 25);
 		}
 		else {
                     window.location = desktopFallback;
