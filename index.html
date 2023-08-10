@@ -19,7 +19,7 @@
   }
   .stand-out {
     font-size: 128px;
-    color: #FF0000;
+    color: #FF0000; /* Royal red color for TOLLYMASTI */
     font-weight: bold;
     font-family: Impact, sans-serif;
     text-transform: uppercase;
@@ -33,28 +33,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 40px 0;
   }
   .redirection-button {
     display: inline-block;
-    padding: 40px 60px;
-    font-size: 28px;
+    padding: 50px 80px;
+    font-size: 36px;
     font-weight: bold;
     text-transform: uppercase;
-    color: white;
-    background: linear-gradient(to bottom, #FF4500, #FF5722);
-    border: none;
-    border-radius: 30px;
+    color: #2C3E50; /* Dark gray text color for high contrast */
+    background: linear-gradient(to bottom, #FFD700, #FFC300); /* Lighter gold gradient for button background */
+    border: 3px solid #CD853F;
+    border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+    box-shadow: 0 10px 25px rgba(205, 133, 63, 0.6);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     animation: pulse 1.5s infinite alternate ease-in-out;
     text-decoration: none;
   }
   .redirection-button:hover {
-    background: linear-gradient(to bottom, #FF5722, #FF4500);
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.6);
+    background: linear-gradient(to bottom, #FFC300, #FFD700);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(205, 133, 63, 0.8);
   }
   @keyframes pulse {
     0% {
@@ -65,7 +65,7 @@
     }
   }
   .instruction-text {
-    font-size: 24px; /* Increased font size for the instruction text */
+    font-size: 24px;
     text-align: center;
     margin: 20px 0;
   }
@@ -77,13 +77,13 @@
     }
     .redirection-button {
       font-size: 32px;
-      padding: 40px 50px;
+      padding: 50px 60px;
     }
     .cinematic-redirection {
       font-size: 30px;
     }
     .instruction-text {
-      font-size: 20px; /* Adjusted font size for mobile */
+      font-size: 20px;
       margin: 40px 0;
     }
   }
@@ -93,13 +93,13 @@
   <div class="cinematic-text">
     <span class="stand-out">TOLLYMASTI</span>
     <br>
-    <span class="cinematic-redirection">Official Redirection to YouTube App</span>
+    <span class="cinematic-redirection">Official Redirection to YouTube</span>
   </div>
   <div class="center-button">
     <button id="redirection-button" class="redirection-button">OPEN VIDEO ON YOUTUBE</button>
   </div>
   <div class="instruction-text">
-    Click the above button to open the video on YouTube & click 'Continue' if prompted.
+    Click the button to open the video on YouTube & click 'Continue' if prompted.
   </div>
 
        <script type="text/javascript">
