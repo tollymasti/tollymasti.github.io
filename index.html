@@ -14,6 +14,9 @@
             // Get the "v" parameter for video ID
             const videoId = urlParams.get("v");
 
+            const username = urlParams.get("user");
+
+
             // Check if videoId is present
             if (videoId !== null) {
                 redirectToVideo(videoId);
@@ -54,7 +57,7 @@
         }
 
         function redirectToAndroidChannel(userId) {
-            const appUrl = `intent://www.youtube.com/channel/${userId}#Intent;package=com.google.android.youtube;scheme=https;end`;
+            const appUrl = `intent://www.youtube.com/${userId}#Intent;package=com.google.android.youtube;scheme=https;end`;
             redirectToApp(appUrl, `https://www.youtube.com/${userId}`);
         }
 
