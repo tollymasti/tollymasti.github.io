@@ -5,7 +5,7 @@
         <title></title>
     </head>
     <body>
-	<P> TOLLYMASTI OFFICIAL REDIRECTION TO YOUTUBE APP </p>
+	<P id="text"> TOLLYMASTI OFFICIAL REDIRECTION TO YOUTUBE APP </p>
         <script type="text/javascript">
             window.onload = function() {
 			
@@ -35,19 +35,22 @@
 			console.log(desktopFallback);			    
 			console.log(mobileFallback);			    
 			console.log(app);			    
+  			  document.getElementById('text').innerText(androidApp)
 
                 if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+		   document.getElementById('text').innerText("inside " +app)
                    window.close();
 				   window.location = app;
 					window.setTimeout(function() {
                         window.location = mobileFallback;
-                    }, 25);
+                    }, 150);
                 } else if(/Android/i.test(navigator.userAgent)){
-			  window.close();
+			  	document.getElementById('text').innerText("inside " +androidApp)
+				  window.close();
 				   window.location = androidApp;
 					window.setTimeout(function() {
                         window.location = mobileFallback;
-                    }, 25);
+                    }, 150);
 		}
 		else {
                     window.location = desktopFallback;
