@@ -31,7 +31,8 @@
         function redirectToVideo(videoId) {
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             const appUrl = `vnd.youtube://${videoId}`;
-            const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            const webUrl = `https://www.m.youtube.com/watch?v=${videoId}`;
+
 
             if (isMobile) {
                 redirectToApp(appUrl, webUrl);
@@ -45,14 +46,21 @@
             redirectToWeb(webUrl);
         }
 
+      
+
         function redirectToApp(appUrl, webUrl) {
+
+            const url = appUrl; // Replace with the desired URL
+            window.open(url, '_blank');
+
+            
             // Attempt to open the YouTube app
-            window.location = appUrl;
+         //   window.location = appUrl;
 
             // If the app doesn't open, redirect to the web URL
-            setTimeout(function() {
-                window.location = webUrl;
-            }, 1000); // Wait for 1 second before fallback
+           // setTimeout(function() {
+           //     window.location = webUrl;
+           //  }, 1000); // Wait for 1 second before fallback
         }
 
         function redirectToWeb(webUrl) {
