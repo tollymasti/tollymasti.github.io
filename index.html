@@ -17,6 +17,8 @@
             // Check if videoId is present
             if (videoId !== null) {
                 redirectToVideo(videoId);
+            } else if (username !== null) {
+                redirectToUser(username);
             } else {
                 // No valid parameters, handle as needed
                 console.log("No valid parameters found.");
@@ -33,10 +35,35 @@
             } else if (isIOS) {
                 redirectToIOS(videoId);
             } else {
-                redirectToWeb(videoId);
+                redirectToWebVideo(videoId);
             }
         }
 
+   function redirectToUser(userId) {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isAndroid = userAgent.includes("android");
+            const isIOS = userAgent.includes("iphone") || userAgent.includes("ipad") || userAgent.includes("ipod");
+
+            if (isAndroid) {
+                redirectToAndroidChannel(videoId);
+            } else if (isIOS) {
+                redirectToIOSChannel(videoId);
+            } else {
+                redirectToWebChannel(videoId);
+            }
+        }
+
+        function redirectToAndroidChannel(userId) {
+            const appUrl = `intent://www.youtube.com/${userId}#Intent;package=com.google.android.youtube;scheme=https;end`;
+            redirectToApp(appUrl, `https://www.youtube.com/${userId}`);
+        }
+
+        function redirectToIOSChannel(userId) {
+            const appUrl = `vnd.youtube://www.youtube.com/${userId}`;
+            redirectToApp(appUrl, `https://www.youtube.com/${userId}`);
+        }
+
+        
         function redirectToAndroid(videoId) {
             const appUrl = `intent://www.youtube.com/watch?v=${videoId}#Intent;package=com.google.android.youtube;scheme=https;end`;
             redirectToApp(appUrl, `https://www.youtube.com/watch?v=${videoId}`);
@@ -54,12 +81,17 @@
             // If the app doesn't open, redirect to the web URL
             setTimeout(function() {
                 window.location.href = webUrl;
-            }, 1000); // Wait for 1 second before fallback
+            }, 10000); // Wait for 1 second before fallback
         }
 
-        function redirectToWeb(webUrl) {
+        function redirectToWebChannel(userId) {
             // Redirect to the web URL
-            window.location.href = webUrl;
+            window.location.href =  `https://www.youtube.com/${userId}`;
+        }
+
+          function redirectToWebVideo(videoId) {
+            // Redirect to the web URL
+            window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
         }
     </script>
 </body>
