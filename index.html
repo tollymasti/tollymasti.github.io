@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Redirect to YouTube</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+  .cinematic-text {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .stand-out {
+    font-size: 128px;
+    color: #FF0000; /* Red color */
+    font-weight: bold;
+    font-family: Impact, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    text-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
+  }
+  .center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .redirection-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: #FF4500; /* Dark Orange color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .redirection-button:hover {
+    background-color: #FF5722; /* Lighter Orange color on hover */
+    transform: scale(1.05);
+  }
+  .instruction-text {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    margin-top: 20px; /* Moved to the top to place it at the bottom of the page */
+  }
+</style>
 </head>
 <body>
-    <p id="textp">TOLLYMASTI OFFICIAL REDIRECTION TO YOUTUBE APP</p>
-    <script type="text/javascript">
+  <div class="cinematic-text">
+    <span class="stand-out">TOLLYMASTI</span>
+    <br>
+    <span class="cinematic-redirection" style="color: white;">Official Redirection to YouTube</span>
+  </div>
+  <div class="center-button">
+    <a href="https://www.youtube.com/" class="redirection-button">OPEN VIDEO ON YOUTUBE</a>
+  </div>
+  <div class="instruction-text">
+    Click the button to open the video in YouTube & click 'Continue' if prompted.
+  </div>
+
+
+       <script type="text/javascript">
         window.onload = function() {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -99,3 +165,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+
