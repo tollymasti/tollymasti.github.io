@@ -14,14 +14,9 @@
             // Get the "v" parameter for video ID
             const videoId = urlParams.get("v");
 
-            // Get the "user" parameter for username
-            const username = urlParams.get("user");
-
-            // Check if videoId or username is present
+            // Check if videoId is present
             if (videoId !== null) {
                 redirectToVideo(videoId);
-            } else if (username !== null) {
-                redirectToUser(username);
             } else {
                 // No valid parameters, handle as needed
                 console.log("No valid parameters found.");
@@ -29,43 +24,42 @@
         };
 
         function redirectToVideo(videoId) {
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const appUrl = `vnd.youtube://${videoId}`;
-            const webUrl = `https://www.m.youtube.com/watch?v=${videoId}`;
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isAndroid = userAgent.includes("android");
+            const isIOS = userAgent.includes("iphone") || userAgent.includes("ipad") || userAgent.includes("ipod");
 
-
-            if (isMobile) {
-                redirectToApp(appUrl, webUrl);
+            if (isAndroid) {
+                redirectToAndroid(videoId);
+            } else if (isIOS) {
+                redirectToIOS(videoId);
             } else {
-                redirectToWeb(webUrl);
+                redirectToWeb(videoId);
             }
         }
 
-        function redirectToUser(username) {
-            const webUrl = `https://www.youtube.com/${username}`;
-            redirectToWeb(webUrl);
+        function redirectToAndroid(videoId) {
+            const appUrl = `intent://www.youtube.com/watch?v=${videoId}#Intent;package=com.google.android.youtube;scheme=https;end`;
+            redirectToApp(appUrl, `https://www.youtube.com/watch?v=${videoId}`);
         }
 
-      
+        function redirectToIOS(videoId) {
+            const appUrl = `vnd.youtube://${videoId}`;
+            redirectToApp(appUrl, `https://www.youtube.com/watch?v=${videoId}`);
+        }
 
         function redirectToApp(appUrl, webUrl) {
-
-            const url = appUrl; // Replace with the desired URL
-            window.open(url, '_blank');
-
-            
             // Attempt to open the YouTube app
-         //   window.location = appUrl;
+            window.location.href = appUrl;
 
             // If the app doesn't open, redirect to the web URL
-           // setTimeout(function() {
-           //     window.location = webUrl;
-           //  }, 1000); // Wait for 1 second before fallback
+            setTimeout(function() {
+                window.location.href = webUrl;
+            }, 1000); // Wait for 1 second before fallback
         }
 
         function redirectToWeb(webUrl) {
             // Redirect to the web URL
-            window.location = webUrl;
+            window.location.href = webUrl;
         }
     </script>
 </body>
