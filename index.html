@@ -24,34 +24,25 @@
         };
 
         function redirectToVideo(videoId) {
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const appUrl = `intent://www.youtube.com/watch?v=${videoId}#Intent;package=com.google.android.youtube;scheme=https;end`;
             const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            
+            // Create an anchor element
+            const anchor = document.createElement("a");
+            anchor.href = webUrl;
 
-            if (isMobile && /Android/i.test(navigator.userAgent)) {
-                redirectToApp(appUrl, webUrl);
-            } else if (isMobile && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                redirectToUniversalLink(webUrl);
+            // Check if the YouTube app is installed (Android or iOS)
+            const isYouTubeAppInstalled = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) &&
+                (navigator.appVersion.indexOf("YouTube/") !== -1 ||
+                 navigator.appVersion.indexOf("youtube/") !== -1);
+
+            if (isYouTubeAppInstalled) {
+                // Use the anchor element to open the YouTube video
+                anchor.target = "_blank"; // Open in a new window/tab
+                anchor.click();
             } else {
+                // Redirect to the web version of the video
                 redirectToWeb(webUrl);
             }
-        }
-
-        function redirectToApp(appUrl, webUrl) {
-            // Attempt to open the YouTube app
-            window.location.href = appUrl;
-
-            // Fallback to the web URL after a short delay
-            setTimeout(function() {
-                redirectToWeb(webUrl);
-            }, 2000); // Wait for 2 seconds before fallback
-        }
-
-        function redirectToUniversalLink(webUrl) {
-            // Attempt to open the YouTube app using a universal link
-            window.location.href = webUrl;
-
-            // Note: Universal links on iOS may not always open the app, depending on user settings and app configuration.
         }
 
         function redirectToWeb(webUrl) {
