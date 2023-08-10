@@ -35,7 +35,7 @@
 			console.log(app);			    
   			  document.getElementById('textp').innerText(androidApp)
 
-                if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 		   document.getElementById('textp').innerText("inside " +app)
                    window.close();
 				   window.location = app;
