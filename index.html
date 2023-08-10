@@ -14,14 +14,9 @@
             // Get the "v" parameter for video ID
             const videoId = urlParams.get("v");
 
-            // Get the "user" parameter for username
-            const username = urlParams.get("user");
-
-            // Check if videoId or username is present
+            // Check if videoId is present
             if (videoId !== null) {
                 redirectToVideo(videoId);
-            } else if (username !== null) {
-                redirectToUser(username);
             } else {
                 // No valid parameters, handle as needed
                 console.log("No valid parameters found.");
@@ -30,34 +25,38 @@
 
         function redirectToVideo(videoId) {
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const appUrl = `vnd.youtube://${videoId}`;
+            const appUrl = `intent://www.youtube.com/watch?v=${videoId}#Intent;package=com.google.android.youtube;scheme=https;end`;
             const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-            if (isMobile) {
+            if (isMobile && /Android/i.test(navigator.userAgent)) {
                 redirectToApp(appUrl, webUrl);
+            } else if (isMobile && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                redirectToUniversalLink(webUrl);
             } else {
                 redirectToWeb(webUrl);
             }
         }
 
-        function redirectToUser(username) {
-            const webUrl = `https://www.youtube.com/${username}`;
-            redirectToWeb(webUrl);
-        }
-
         function redirectToApp(appUrl, webUrl) {
             // Attempt to open the YouTube app
-            window.location = appUrl;
+            window.location.href = appUrl;
 
-            // If the app doesn't open, redirect to the web URL
+            // Fallback to the web URL after a short delay
             setTimeout(function() {
-                window.location = webUrl;
-            }, 1000); // Wait for 1 second before fallback
+                redirectToWeb(webUrl);
+            }, 2000); // Wait for 2 seconds before fallback
+        }
+
+        function redirectToUniversalLink(webUrl) {
+            // Attempt to open the YouTube app using a universal link
+            window.location.href = webUrl;
+
+            // Note: Universal links on iOS may not always open the app, depending on user settings and app configuration.
         }
 
         function redirectToWeb(webUrl) {
             // Redirect to the web URL
-            window.location = webUrl;
+            window.location.href = webUrl;
         }
     </script>
 </body>
