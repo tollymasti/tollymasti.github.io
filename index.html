@@ -50,12 +50,7 @@
                     window.location = desktopFallback;
                 }
 
-                function killPopup() {
-                    window.removeEventListener('pagehide', killPopup);
-                }
-
-                window.addEventListener('pagehide', killPopup);
-
+             
             };
         </script>
     </body>
