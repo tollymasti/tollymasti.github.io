@@ -15,16 +15,19 @@
   }
   .cinematic-text {
     text-align: center;
-    margin: 20px 0;
+    margin: 10vh 0;
   }
   .stand-out {
     font-size: 128px;
-    color: #FF0000; /* Red color */
+    color: #FF0000;
     font-weight: bold;
     font-family: Impact, sans-serif;
     text-transform: uppercase;
     letter-spacing: 8px;
     text-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
+  }
+  .cinematic-redirection {
+    font-size: 36px;
   }
   .center-button {
     display: flex;
@@ -34,8 +37,8 @@
   }
   .redirection-button {
     display: inline-block;
-    padding: 15px 30px;
-    font-size: 24px;
+    padding: 40px 60px;
+    font-size: 28px;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -46,7 +49,7 @@
     box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     animation: pulse 1.5s infinite alternate ease-in-out;
-    text-decoration: none; /* Remove underlines */
+    text-decoration: none;
   }
   .redirection-button:hover {
     background: linear-gradient(to bottom, #FF5722, #FF4500);
@@ -62,7 +65,7 @@
     }
   }
   .instruction-text {
-    font-size: 18px;
+    font-size: 24px; /* Increased font size for the instruction text */
     text-align: center;
     margin: 20px 0;
   }
@@ -70,15 +73,18 @@
   /* Media Query for Mobile Devices */
   @media (max-width: 767px) {
     .stand-out {
-      font-size: 100px; /* Larger font size for mobile */
+      font-size: 100px;
     }
     .redirection-button {
-      font-size: 32px; /* Larger font size for mobile */
-      padding: 20px 50px; /* Larger padding for mobile */
+      font-size: 32px;
+      padding: 40px 50px;
+    }
+    .cinematic-redirection {
+      font-size: 30px;
     }
     .instruction-text {
-      font-size: 24px; /* Larger font size for mobile */
-      margin: 40px 0; /* Larger margin for mobile */
+      font-size: 20px; /* Adjusted font size for mobile */
+      margin: 40px 0;
     }
   }
 </style>
