@@ -93,10 +93,10 @@
   <div class="cinematic-text">
     <span class="stand-out">TOLLYMASTI</span>
     <br>
-    <span class="cinematic-redirection">Official Redirection to YouTube</span>
+    <span class="cinematic-redirection">Official Redirection to YouTube App</span>
   </div>
   <div class="center-button">
-    <button id="redirection-button" class="redirection-button">OPEN VIDEO ON YOUTUBE</button>
+    <button id="redirection-button" class="redirection-button">CLICK TO OPEN VIDEO ON YOUTUBE APP</button>
   </div>
   <div class="instruction-text">
     Click the button to open the video on YouTube & click 'Continue' if prompted.
@@ -201,9 +201,9 @@
             window.location.href = appUrl;
 
             // If the app doesn't open, redirect to the web URL
-            setTimeout(function() {
+        /*    setTimeout(function() {
                 window.location.href = webUrl;
-            }, 10000); // Wait for 1 second before fallback
+            }, 10000); // Wait for 1 second before fallback */
         }
 
         function redirectToWebChannel(userId) {
@@ -215,6 +215,12 @@
             // Redirect to the web URL
             window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
         }    
+
+         function killPopup() {
+                    window.removeEventListener('pagehide', killPopup);
+                }
+          window.addEventListener('pagehide', killPopup);
+         
   </script>
 </body>
 </html>
