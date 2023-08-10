@@ -54,7 +54,7 @@
         }
 
         function redirectToAndroidChannel(userId) {
-            const appUrl = `intent://www.youtube.com/${userId}#Intent;package=com.google.android.youtube;scheme=https;end`;
+            const appUrl = `intent://www.youtube.com/channel/${userId}#Intent;package=com.google.android.youtube;scheme=https;end`;
             redirectToApp(appUrl, `https://www.youtube.com/${userId}`);
         }
 
