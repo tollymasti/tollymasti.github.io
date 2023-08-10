@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +12,14 @@
     margin: 0;
     font-family: Arial, sans-serif;
     color: white;
+    overflow: hidden; /* Prevent scrolling */
   }
   .cinematic-text {
     text-align: center;
-    margin: 5vh 0;
+    margin: 20vh 0 10vh; /* Adjusted margins */
   }
   .stand-out {
-    font-size: 10vw;
+    font-size: 15vw; /* Larger font size */
     color: #FF0000; /* Red color */
     font-weight: bold;
     font-family: Impact, sans-serif;
@@ -72,14 +71,11 @@
   /* Media Query for Mobile Devices */
   @media (max-width: 767px) {
     .cinematic-text {
-      margin: 10vh 0;
-    }
-    .center-button {
-      margin: 10vh 0;
+      margin: 10vh 0 5vh; /* Adjusted margins */
     }
     .instruction-text {
-      margin: 10vh 0;
       font-size: 5vw;
+      margin: 5vh 0; /* Adjusted margin */
     }
   }
 </style>
@@ -97,7 +93,6 @@
     Click the button to open the video on YouTube & click 'Continue' if prompted.
   </div>
 
- 
        <script type="text/javascript">
     // JavaScript to handle the button click event
     document.getElementById("redirection-button").addEventListener("click", function() {
